@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "adventofcode-2016"
+version = "0.1.0"
+description = ""
+authors = ["Meir <maornet@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.10.0"
+pytest = "^8.2.0"
+black = "^24.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
