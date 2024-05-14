@@ -7,9 +7,7 @@ def solution(input: str, disk_length: int) -> str:
     while len(input_list) < disk_length:
         input_list += ["0", *("0" if i == "1" else "1" for i in reversed(input_list))]
 
-    input_list = input_list[:disk_length]
-
-    checksum = ["1" if a == b else "0" for a, b in itertools.batched(input_list, 2)]
+    checksum = input_list[:disk_length]
 
     while len(checksum) % 2 == 0:
         checksum = ["1" if a == b else "0" for a, b in itertools.batched(checksum, 2)]
