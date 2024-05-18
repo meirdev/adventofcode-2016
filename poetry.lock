@@ -222,6 +222,17 @@ pluggy = ">=1.5,<2.0"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "python-ranges"
+version = "1.2.2"
+description = "Continuous Range, RangeSet, and RangeDict data structures"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "python-ranges-1.2.2.tar.gz", hash = "sha256:799618046603954a78ab4611d21080d387b3e9c50c181789e3903d6209a26b98"},
+    {file = "python_ranges-1.2.2-py3-none-any.whl", hash = "sha256:d103447237a6b57860b406863345bf405a46f374f0882fed37da5f36807653df"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.11.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -235,4 +246,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "0f6c9da814a2867ab6497b154f4cf18156f7a6e699c04f23aba79ae83e43dfcf"
+content-hash = "654421e74ac7bbefde4e2a723119bf0124334bb60deb6eea988b6a7654d51519"
