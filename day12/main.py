@@ -32,11 +32,14 @@ class dec(Instruction):
 @dataclasses.dataclass
 class jnz(Instruction):
     value: Value
-    jump: int
+    jump: Value
 
 
 def parse_input(input: str) -> list[Instruction]:
     instructions: list[Instruction] = []
+
+    def get_value(val: str) -> Value:
+        return val if val.isalpha() else int(val)
 
     for line in input.strip().splitlines():
         match line.split(" "):
@@ -45,9 +48,9 @@ def parse_input(input: str) -> list[Instruction]:
             case ["dec", reg]:
                 instructions.append(dec(reg))
             case ["cpy", val, reg]:
-                instructions.append(cpy(int(val) if val.isdigit() else val, reg))
+                instructions.append(cpy(get_value(val), reg))
             case ["jnz", val, jump]:
-                instructions.append(jnz(int(val) if val.isdigit() else val, int(jump)))
+                instructions.append(jnz(get_value(val), get_value(jump)))
 
     return instructions
 
@@ -58,19 +61,22 @@ def solution(input: str, **default_registers: int) -> int:
     registers: DefaultDict[str, int] = collections.defaultdict(int)
     registers |= default_registers
 
+    def get_value(val: Value) -> int:
+        return val if isinstance(val, int) else registers[val]
+
     i = 0
 
     while i < len(instructions):
         match instructions[i]:
             case cpy(val, reg):
-                registers[reg] = val if isinstance(val, int) else registers[val]
+                registers[reg] = get_value(val)
             case inc(reg):
                 registers[reg] += 1
             case dec(reg):
                 registers[reg] -= 1
             case jnz(val, jump):
-                if (val if isinstance(val, int) else registers[val]) != 0:
-                    i += jump
+                if get_value(val) != 0:
+                    i += get_value(jump)
                     continue
 
         i += 1
